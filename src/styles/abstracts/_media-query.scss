@@ -1,0 +1,28 @@
+$viewport-xs: 23.4375rem;
+$viewport-sm: 36rem;
+$viewport-md: 48rem;
+$viewport-lg: 64rem;
+$viewport-xl: 90rem;
+
+@mixin respond($breakpoints...) {
+  @each $breakpoint in $breakpoints {
+    @if $breakpoint == sm {
+      @media (min-width: $viewport-sm) {
+        @content;
+      }
+    } @else if $breakpoint == md {
+      @media (min-width: $viewport-md) {
+        @content;
+      }
+    } @else if $breakpoint == lg {
+      @media (min-width: $viewport-lg) {
+        @content;
+      }
+    } @else if $breakpoint == xl {
+      @media (min-width: $viewport-xl) {
+        @content;
+      }
+    }
+  }
+}
+

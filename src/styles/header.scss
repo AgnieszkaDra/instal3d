@@ -1,0 +1,130 @@
+@use './abstracts/index' as *;
+
+.header {
+  width: 100%;
+  padding-block: 2.5rem;;
+  background-color: $header-background;
+  opacity: 0.3;
+  @include respond(md) {
+    padding: $spacing-800 0;
+  }
+
+  &__mobile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+    @include respond(md, lg, xl) {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: $viewport-md) {
+  .header {
+    padding-block: 2.5rem;
+    padding-inline: clamp(1.5rem, 5vw, 4.875rem);
+  }
+}
+
+@media (min-width: $viewport-lg) {
+  .header {
+    padding-block: 3rem;
+    padding-inline: clamp(4.875rem, 6vw, 10.125rem);
+  }
+}
+
+.burger-menu {
+  @include flexAbsoluteCenter;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  background-color: transparent;
+  svg {
+   color: $white;
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateX(100%);
+
+  &.open {
+    transform: translateX(0%);
+    transition: transform 1.5s linear;
+    justify-content: center;
+  }
+
+  @include respond(md, lg, xl) {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    transform: none;
+  }
+}
+
+.logo {
+  display: none;
+  @include respond(md) {
+    display: block;
+    font-weight: 700;
+    font-size: map-get($font-size, extra-large);
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  height: 100vh;
+  padding-top: 10rem;
+  color: $white;
+  background-color: $header-background;
+
+  @include respond(md, lg, xl) {
+    margin-left: auto;
+    flex-direction: row;
+    height: auto;
+    padding-top: 0;
+  }
+
+  & > * {
+    @include flexAbsoluteCenter();
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-400;
+   
+    
+    @include respond(md, lg, xl) {
+      flex-direction: row;
+      font-size: map-get($font-size, medium);
+      gap: $spacing-700;
+    }
+  }
+
+  &__link {
+    color: $white;
+    font-size: map-get($font-size, normal);
+    font-weight: 500;
+    transition: color 0.3s;
+    @include respond(md, lg, xl) {
+      font-size: map-get($font-size, medium);
+    }
+    &:hover {
+      opacity: 0.3;
+    }
+  }
+}
+
