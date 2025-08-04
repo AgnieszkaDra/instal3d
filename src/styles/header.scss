@@ -119,6 +119,8 @@
     font-size: map-get($font-size, normal);
     font-weight: 500;
     transition: color 0.3s;
+    border: none;
+    background: transparent;
     @include respond(md, lg, xl) {
       font-size: map-get($font-size, medium);
     }
