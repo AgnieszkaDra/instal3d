@@ -28,6 +28,7 @@ html, body {
 }
 
 body {
+  position: relative;
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.7;
@@ -47,8 +48,7 @@ li {
 a {
   text-decoration: none;
   cursor: pointer;
-  color: $white;
- }
+}
 
 img {
   width: 100%;

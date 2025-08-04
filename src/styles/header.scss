@@ -1,6 +1,7 @@
 @use './abstracts/index' as *;
 
 .header {
+  position: relative;
   width: 100%;
   padding-block: 2.5rem;;
   background-color: $header-background;
@@ -88,7 +89,6 @@
   height: 100vh;
   padding-top: 10rem;
   color: $white;
-  background-color: $header-background;
 
   @include respond(md, lg, xl) {
     margin-left: auto;
@@ -106,7 +106,6 @@
     flex-direction: column;
     gap: $spacing-400;
    
-    
     @include respond(md, lg, xl) {
       flex-direction: row;
       font-size: map-get($font-size, medium);
@@ -127,6 +126,12 @@
     &:hover {
       opacity: 0.3;
     }
+  }
+}
+
+.submenu {
+  &__link {
+    color: $text;
   }
 }
 

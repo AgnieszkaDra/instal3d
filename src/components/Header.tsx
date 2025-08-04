@@ -26,6 +26,7 @@ const Header = () => {
           <Link to="/">Logo</Link>
         </p>
         <Menu />
+     
       </motion.nav>
     </motion.header>
   );

@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { useSubmenuToggle } from '../hooks/useSubmenuToggle'; 
+import { useSubmenuContext } from '../hooks/useSubmenuContext';
 import navItems from '../config/nav.config';
 
 export default function Menu() {
   const { pathname } = useLocation();
-  const { toggleSubmenu, isSubmenuOpen } = useSubmenuToggle();
+  const { toggleSubmenu, openIndex } = useSubmenuContext();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -34,47 +34,24 @@ export default function Menu() {
           tabIndex={-1}
         >
           {navItems.map((item, index) => {
-            const submenuId = `submenu-${index}`;
-            const isOpen = isSubmenuOpen(index);
+            const isOpen = openIndex === index;
             const isActive = item.match(pathname);
+            const submenuId = `submenu-${index}`;
 
             return (
               <li key={item.href} role="none" className="menu__item">
                 {item.children ? (
-                  <>
-                    <button
-                      className={`menu__link`}
-                      onClick={() => toggleSubmenu(index)}
-                      onKeyDown={(e) => handleKeyDown(e, index)}
-                      aria-haspopup="true"
-                      aria-expanded={isOpen}
-                      aria-controls={submenuId}
-                      role="menuitem"
-                    >
-                      {item.label}
-                    </button>
-                    {isOpen && (
-                      <ul
-                        id={submenuId}
-                        className="menu__submenu"
-                        role="menu"
-                        tabIndex={-1}
-                      >
-                        {item.children.map((child) => (
-                          <li key={child.href} role="none">
-                            <Link
-                              className={`menu__link ${child.match(pathname) ? 'underline' : ''}`}
-                              to={child.href}
-                              role="menuitem"
-                              tabIndex={0}
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </>
+                  <button
+                    className="menu__link"
+                    onClick={() => toggleSubmenu(index)}
+                    onKeyDown={(e) => handleKeyDown(e, index)}
+                    aria-haspopup="true"
+                    aria-expanded={isOpen}
+                    aria-controls={submenuId}
+                    role="menuitem"
+                  >
+                    {item.label}
+                  </button>
                 ) : (
                   <Link
                     className={`menu__link ${isActive ? 'underline' : ''}`}
