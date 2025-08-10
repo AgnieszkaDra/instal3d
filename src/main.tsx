@@ -5,12 +5,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
+import Offer from './components/Offer.tsx';
+import Main from './components/Main.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<App />}/>
+        <Route path="/" element={<App />}>
+        <Route index element={<Main/>} />
+        <Route path="oferta/:category" element={<Offer />} />
+        <Route path="oferta/:category/:section" element={<Offer />} />
+        <Route path="oferta/:category/:section" element={<Offer />} />
+        </Route>
       </Routes>
     </Router>
  </StrictMode>,

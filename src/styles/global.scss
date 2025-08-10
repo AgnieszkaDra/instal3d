@@ -1,5 +1,5 @@
-@use './abstracts/index' as *;
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+@use "sass:map";
+@use './abstracts/index' as ui;
 
 // ==============================
 // Reset & Base
@@ -10,11 +10,6 @@
   text-align: center;
 }
  
-html {
-  font-size: 10px;
-}
-
-
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -24,16 +19,16 @@ html {
 html, body {
   height: 100%;
   box-sizing: border-box;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 body {
   position: relative;
-  font-family: var(--font-body);
+  font-family: map.get(ui.$font-family, body);
   font-weight: 400;
   line-height: 1.7;
-  background-color: $white;
-  color: $text;
+  background-color: ui.$white;
+  color: ui.$text;
   overflow-x: hidden;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -58,6 +53,20 @@ img {
 
 button {
  cursor: pointer;
+}
+
+$container-padding: clamp(1rem, 9vw, 4rem);
+
+.container {
+  margin-inline: auto;
+  padding-inline: $container-padding;
+  width: 100%;
+
+  @include ui.responsive-max-width((
+    md: (30rem, 60vw, ui.$viewport-md),
+    lg: (48rem, 70vw, ui.$viewport-lg),
+    xl: (64rem, 80vw, ui.$viewport-xl)
+  ));
 }
 
 

@@ -5,6 +5,7 @@ interface SubmenuContextProps {
   toggleSubmenu: (index: number | null) => void;
 }
 
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const SubmenuContext = createContext<SubmenuContextProps | undefined>(undefined);
 

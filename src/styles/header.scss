@@ -3,12 +3,7 @@
 .header {
   position: relative;
   width: 100%;
-  padding-block: 2.5rem;;
-  background-color: $header-background;
-  opacity: 0.3;
-  @include respond(md) {
-    padding: $spacing-800 0;
-  }
+  padding-block: 1.5rem;
 
   &__mobile {
     display: flex;
@@ -27,14 +22,14 @@
 
 @media (min-width: $viewport-md) {
   .header {
-    padding-block: 2.5rem;
+    padding-block: 0.8rem;
     padding-inline: clamp(1.5rem, 5vw, 4.875rem);
   }
 }
 
 @media (min-width: $viewport-lg) {
   .header {
-    padding-block: 3rem;
+    padding-block: 1rem;
     padding-inline: clamp(4.875rem, 6vw, 10.125rem);
   }
 }
@@ -46,7 +41,7 @@
   padding: 8px;
   background-color: transparent;
   svg {
-   color: $white;
+   color: $text;
   }
 }
 
@@ -88,9 +83,9 @@
   align-items: center;
   height: 100vh;
   padding-top: 10rem;
-  color: $white;
-
+  
   @include respond(md, lg, xl) {
+    display: flex;
     margin-left: auto;
     flex-direction: row;
     height: auto;
@@ -108,30 +103,79 @@
    
     @include respond(md, lg, xl) {
       flex-direction: row;
-      font-size: map-get($font-size, medium);
       gap: $spacing-700;
     }
   }
 
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+
   &__link {
-    color: $white;
-    font-size: map-get($font-size, normal);
+    color: $text-light;
+    font-size: map-get($font-size, small);
     font-weight: 500;
     transition: color 0.3s;
     border: none;
     background: transparent;
     @include respond(md, lg, xl) {
-      font-size: map-get($font-size, medium);
+      font-size: map-get($font-size, normal);
     }
     &:hover {
-      opacity: 0.3;
+      color: darken($text-light, 15%);
     }
   }
 }
 
 .submenu {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: $white;
+  font-size: map-get($font-size, extra-small);
+  font-weight: map-get($font-weight, large);
+  border: 2px solid $text-light;
+  border-left: none;
+  z-index: 100;
+  padding: 0; 
+  text-align: left;
+  display: flex;
+  align-items: start;
+
+  @include respond(md) {
+    width: 90%;
+    height: 50%;
+    display: grid;
+    grid-template-columns: 5% 1fr;
+    gap: 20px; 
+  }
+
   &__link {
     color: $text;
+    padding: 10px; 
+    display: block;
+    &:hover {
+      background-color: $grey-light-50;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__nested-list {
+    font-weight: map-get($font-weight, medium);
+  }
+
+  &__close {
+    grid-row: 1 / -1; 
+    align-self: start;
+    background-color: transparent;
+    border: none;
+    margin-top: 10px;
   }
 }
+
 

@@ -1,6 +1,4 @@
 @use "sass:map";
-@use './abstracts/index' as *;
-
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 
@@ -22,7 +20,7 @@
   font-display: swap;
 }
 
-
-
-
-
+$font-family: (
+  heading: ('DM Sans', sans-serif),
+  body: ('canada-type-gibson', arial, helvetica, sans-serif)
+);

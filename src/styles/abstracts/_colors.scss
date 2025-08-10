@@ -5,5 +5,20 @@
 // ----------------------
 
 $white: rgba(255, 255, 255, 1);
-$text: rgb(121, 151, 165);
-$header-background: rgb(43, 91, 129);
+$text: rgb(79, 88, 96);
+$grey: rgb(79, 88, 96);
+// Lighter shades
+$grey-light-10: lighten($grey, 10%);
+$grey-light-20: lighten($grey, 20%);
+$grey-light-30: lighten($grey, 30%);
+$grey-light-40: lighten($grey, 40%); 
+$grey-light-50: lighten($grey, 50%);
+
+// Darker shades
+$grey-dark-10: darken($grey, 10%);
+$grey-dark-20: darken($grey, 20%);
+$grey-dark-30: darken($grey, 30%);
+
+$text-light: lighten(rgb(79, 88, 96), 40%);
+$text-dark: dargen(rgb(79, 88, 96), 60%);
+$header-background: rgb(79, 88, 96);
