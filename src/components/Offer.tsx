@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import navItems from '../config/nav.config';
 import type { NavItem } from '../config/nav.config';
 import { Breadcrumbs } from '../ui';
+import OfferList from '../ui/OfferList';
 
 const findItemByPath = (items: NavItem[], path: string): NavItem | null => {
   for (const item of items) {
@@ -14,7 +15,7 @@ const findItemByPath = (items: NavItem[], path: string): NavItem | null => {
   return null;
 };
 
-const Offer = ()=> {
+const Offer = () => {
   const { category, section } = useParams();
   const fullPath = section
     ? `/oferta/${category}/${section}`
@@ -23,17 +24,18 @@ const Offer = ()=> {
   const matched = findItemByPath(navItems, fullPath);
 
   return (
-    <section className='offer container'>
-      <Breadcrumbs/>
-      {matched?.products ? (
-        <ul>
-          {matched.products.map((product, index) => (
-            <li key={index}>{product}</li>
-          ))}
-        </ul>
-      ) : (
-        <p></p>
+    <section className="offer container">
+      <Breadcrumbs />
+
+      {/* Show description if it exists */}
+      {matched?.description && (
+        <p className="offer__description paragraph">{matched.description}</p>
       )}
+      
+
+
+      {/* Render products if they exist */}
+      <OfferList items={matched?.items} /> 
     </section>
   );
 };

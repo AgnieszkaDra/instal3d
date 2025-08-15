@@ -1,13 +1,10 @@
 @use "sass:map";
 @use './abstracts/index' as ui;
 
-.main {
-    margin-top: ui.$spacing-400;
-}
 
 .breadcrumbs {
   display: flex;
-
+  padding-top: ui.$spacing-600;
   &__list { 
     display: flex;
   }
@@ -37,5 +34,88 @@
     margin: 0 ui.$spacing-200;
     color: ui.$text-dark;
     font-size: 0.85em;
+  }
+}
+
+.carousel {
+  position: relative;
+  max-width: 100%;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+
+  &__button-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &--prev {
+      left: ui.$spacing-400;
+    }
+
+    &--next {
+      right: ui.$spacing-400;
+    }
+  }
+
+  &__button {
+    background-color: ui.$grey-light-50;
+    border: none;
+    cursor: pointer;
+    padding: ui.$spacing-200;
+  
+    &:hover {
+      background-color: ui.$grey-light-30;
+    }
+  }
+}
+
+.offer {
+  &__description {
+    margin-top: ui.$spacing-600;
+  }
+  &__products {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: max(30px);
+    margin-top: ui.$spacing-600;
+    @include ui.respond(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include ui.respond(lg, xl) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__product {
+    max-width: 100%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    &-image {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: ui.$spacing-400;
+    }
+    &-description {
+      text-align: start;
+    }
+    &-features {
+      margin-top: ui.$spacing-600;
+    }
+    &-feature {
+      margin-left: 15px;
+      text-align: start;
+      list-style: circle;
+    }
   }
 }
