@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import navItems from "../config/nav.config";
 import { Breadcrumbs } from "../ui";
 import { ProductPageModel } from "../models/ProductPageModel";
+import { ProductTabs } from "./ProductTabs";
 
 const ProductPage = () => {
   const { product } = useParams();
@@ -20,6 +21,7 @@ const ProductPage = () => {
           <img src={page.path} alt={page.name} className="product__image" />
         </div>
       )}
+      <ProductTabs matchedProduct={page} />
     </section>
   );
 };

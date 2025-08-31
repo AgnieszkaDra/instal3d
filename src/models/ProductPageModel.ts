@@ -1,5 +1,6 @@
 import type { OfferNavItem } from "../config/nav.config";
 import type { ProductItem } from "../config/products.config";
+import type { InfoBlock } from "../config/products.config";
 
 export class ProductPageModel {
   private item: ProductItem | null;
@@ -28,5 +29,9 @@ export class ProductPageModel {
 
   get path(): string | null {
     return this.item?.path ?? null;
+  }
+
+  get basicInformations(): InfoBlock[] {
+    return this.item?.basicInformations ?? [];
   }
 }
