@@ -6,13 +6,8 @@ import { OfferPageModel } from "../models/OfferPageModel";
 
 const Offer = () => {
   const { category, section } = useParams();
-  const fullPath = section
-    ? `/oferta/${category}/${section}`
-    : `/oferta/${category}`;
-
-  const offer = new OfferPageModel(navItems, fullPath);
-  console.log(offer);
-
+  const offer = new OfferPageModel(navItems, category, section);
+ 
   return (
     <section className="offer container">
       <Breadcrumbs />

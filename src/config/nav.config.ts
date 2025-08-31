@@ -21,15 +21,21 @@ const makeItem = (
   href: string,
   opts: Partial<Omit<OfferNavItem, "label" | "href" | "match">> = {},
   matchMode: "equals" | "startsWith" = "equals"
-): OfferNavItem => ({
-  label,
-  href,
-  match:
-    matchMode === "equals"
-      ? (path) => path === href
-      : (path) => path.startsWith(href),
-  ...opts,
-});
+): OfferNavItem => {
+  const parts = href.split("/").filter(Boolean);
+  const slug = parts[parts.length - 1] || undefined;
+
+  return {
+    label,
+    href,
+    slug,
+    match:
+      matchMode === "equals"
+        ? (path) => path === href
+        : (path) => path.startsWith(href),
+    ...opts,
+  };
+};
 
 const navItems: OfferNavItem[] = [
   makeItem("Oferta", "/oferta/", {
@@ -51,6 +57,7 @@ const navItems: OfferNavItem[] = [
         subTitleSecond: "Niech wysokie temperatury nie będą już Twoim problemem",
         features: airconditioningFeatures,
         children: [
+          makeItem("Realizacje", "/oferta/klimatyzacja/realizacje"),
           makeItem("Produkty", "/oferta/klimatyzacja/produkty", {
             products: airConditionProducts,
           }),
