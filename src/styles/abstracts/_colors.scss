@@ -13,11 +13,17 @@ $grey-light-20: lighten($grey, 20%);
 $grey-light-30: lighten($grey, 30%);
 $grey-light-40: lighten($grey, 40%); 
 $grey-light-50: lighten($grey, 50%);
+$grey-light-60: lighten($grey, 60%);
+$grey-light-70: lighten($grey, 70%);
+$grey-light-80: lighten($grey, 80%);
+$grey-light-90: lighten($grey, 90%);
 
 // Darker shades
 $grey-dark-10: darken($grey, 10%);
 $grey-dark-20: darken($grey, 20%);
 $grey-dark-30: darken($grey, 30%);
+
+$turcoise-decoration: rgb(81, 125, 152);
 
 $text-light: lighten(rgb(79, 88, 96), 40%);
 $text-dark: dargen(rgb(79, 88, 96), 60%);

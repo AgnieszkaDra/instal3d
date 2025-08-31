@@ -1,19 +1,8 @@
-import { useParams } from 'react-router-dom';
-import navItems from '../config/nav.config';
-import type { NavItem } from '../config/nav.config';
-import { Breadcrumbs } from '../ui';
-import OfferList from '../ui/OfferList';
-
-const findItemByPath = (items: NavItem[], path: string): NavItem | null => {
-  for (const item of items) {
-    if (item.href === path) return item;
-    if (item.children) {
-      const found = findItemByPath(item.children, path);
-      if (found) return found;
-    }
-  }
-  return null;
-};
+import { useParams } from "react-router-dom";
+import navItems from "../config/nav.config";
+import { Breadcrumbs } from "../ui";
+import OfferList from "../ui/OfferList";
+import { OfferPage } from "../models/OfferPage";
 
 const Offer = () => {
   const { category, section } = useParams();
@@ -21,21 +10,30 @@ const Offer = () => {
     ? `/oferta/${category}/${section}`
     : `/oferta/${category}`;
 
-  const matched = findItemByPath(navItems, fullPath);
+  const offer = new OfferPage(navItems, fullPath);
 
   return (
     <section className="offer container">
       <Breadcrumbs />
 
-      {/* Show description if it exists */}
-      {matched?.description && (
-        <p className="offer__description paragraph">{matched.description}</p>
+      {offer.title && <h1 className="offer__title h1-main">{offer.title}</h1>}
+      {offer.sublabel && <h2 className="offer__subtitle h2-header">{offer.sublabel}</h2>}
+      {offer.sublabelSecond && (
+        <h5 className="offer__subtitle--secondary h5-lead">{offer.sublabelSecond}</h5>
       )}
-      
 
+      {offer.features.length > 0 && (
+        <ul className="offer__products">
+          {offer.features.map((f, i) => (
+            <li key={i} className="offer__product">
+              <h3 className="offer__product__title h5-lead">{f.title}</h3>
+              <p className="offer__product__paragraph paragraph">{f.description}</p>
+            </li>
+          ))}
+        </ul>
+      )}
 
-      {/* Render products if they exist */}
-      <OfferList items={matched?.items} /> 
+      <OfferList items={offer.products} />
     </section>
   );
 };
