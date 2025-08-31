@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import navItems from "../config/nav.config";
 import { Breadcrumbs } from "../ui";
 import OfferList from "../ui/OfferList";
-import { OfferPage } from "../models/OfferPage";
+import { OfferPageModel } from "../models/OfferPageModel";
 
 const Offer = () => {
   const { category, section } = useParams();
@@ -10,7 +10,8 @@ const Offer = () => {
     ? `/oferta/${category}/${section}`
     : `/oferta/${category}`;
 
-  const offer = new OfferPage(navItems, fullPath);
+  const offer = new OfferPageModel(navItems, fullPath);
+  console.log(offer);
 
   return (
     <section className="offer container">

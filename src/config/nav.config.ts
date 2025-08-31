@@ -12,7 +12,7 @@ export type OfferNavItem = {
   subTitle?: string;
   subTitleSecond?: string;
   children?: OfferNavItem[];
-  items?: typeof airConditionProducts;       
+  products?: typeof airConditionProducts;       
   features?: typeof airconditioningFeatures;
 };
 
@@ -51,9 +51,8 @@ const navItems: OfferNavItem[] = [
         subTitleSecond: "Niech wysokie temperatury nie będą już Twoim problemem",
         features: airconditioningFeatures,
         children: [
-          makeItem("Realizacje", "/oferta/klimatyzacja/realizacje"),
           makeItem("Produkty", "/oferta/klimatyzacja/produkty", {
-           items: airConditionProducts,
+            products: airConditionProducts,
           }),
         ],
       }),
