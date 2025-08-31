@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 export interface CarouselImage {
-  imageBackground: string;
   name: string;
   path: string;
 }

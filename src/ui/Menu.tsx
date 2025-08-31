@@ -26,32 +26,31 @@ export default function Menu() {
       animate={{ opacity: 1 }}
       transition={{ delay: 0.4, duration: 0.6 }}
     >
-      <div className="menu__list-wrapper">
-        <ul 
-          className="menu__list" 
-          role="menubar" 
-          aria-label="Main menu"
-          tabIndex={-1}
-        >
-          {navItems.map((item, index) => {
-            const isOpen = openIndex === index;
-            const isActive = item.match(pathname);
-            const submenuId = `submenu-${index}`;
+      <ul 
+        className="menu__list" 
+        role="menubar" 
+        aria-label="Main menu"
+        tabIndex={-1}
+      >
+        {navItems.map((item, index) => {
+          const isOpen = openIndex === index;
+          const isActive = item.match(pathname);
+          const submenuId = `submenu-${index}`;
 
-            return (
-              <li key={item.href} role="none" className="menu__item">
-                {item.children ? (
-                  <button
-                    className="menu__link"
-                    onClick={() => toggleSubmenu(index)}
-                    onKeyDown={(e) => handleKeyDown(e, index)}
-                    aria-haspopup="true"
-                    aria-expanded={isOpen}
-                    aria-controls={submenuId}
-                    role="menuitem"
-                  >
-                    {item.label}
-                  </button>
+          return (
+            <li key={item.href} role="none" className="menu__item">
+              {item.children ? (
+                <button
+                  className="menu__link"
+                  onClick={() => toggleSubmenu(index)}
+                  onKeyDown={(e) => handleKeyDown(e, index)}
+                  aria-haspopup="true"
+                  aria-expanded={isOpen}
+                  aria-controls={submenuId}
+                  role="menuitem"
+                >
+                  {item.label}
+                </button>
                 ) : (
                   <Link
                     className={`menu__link ${isActive ? 'underline' : ''}`}
@@ -65,7 +64,7 @@ export default function Menu() {
             );
           })}
         </ul>
-      </div>
+
     </motion.div>
   );
 }

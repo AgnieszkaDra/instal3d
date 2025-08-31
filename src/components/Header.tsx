@@ -15,8 +15,6 @@ const Header = () => {
     >
       <motion.div
         className="header__mobile"
-        initial={{ x: -30, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
         <Hamburger navbarOpen={navbarOpen} toggleNavbar={toggleNavbar} />

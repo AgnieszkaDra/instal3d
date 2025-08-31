@@ -15,6 +15,7 @@
     top: 0;
     width: 100%;
     z-index: 2000;
+    background-color: $header-background;
     @include respond(md, lg, xl) {
       display: none;
     }
@@ -42,7 +43,7 @@
   padding: 8px;
   background-color: transparent;
   svg {
-   color: $text;
+   color: $white;
   }
 }
 
@@ -58,6 +59,8 @@
     transform: translateX(0%);
     transition: transform 1.5s linear;
     justify-content: center;
+    background-color: $white;
+    z-index: 1000;
   }
 
   @include respond(md, lg, xl) {
@@ -80,21 +83,17 @@
 .menu {
   display: flex;
   flex-direction: column;
-  justify-content: start;
   align-items: center;
   height: 100vh;
   padding-top: 10rem;
   
   @include respond(md, lg, xl) {
+    align-items: center;
     display: flex;
     margin-left: auto;
     flex-direction: row;
     height: auto;
     padding-top: 0;
-  }
-
-  & > * {
-    @include flexAbsoluteCenter();
   }
 
   &__list {
@@ -115,8 +114,7 @@
 
   &__link {
     color: $text-light;
-    font-size: map-get($font-size, small);
-    font-weight: 500;
+    font-weight: map-get($font-weight, medium);
     transition: color 0.3s;
     border: none;
     background: transparent;

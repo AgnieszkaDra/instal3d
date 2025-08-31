@@ -38,11 +38,7 @@
 }
 
 .carousel {
-  position: relative;
-  max-width: 100%;
-  height: 400px;
-  background-size: cover;
-  background-position: center;
+  display: none;
 
   &__button-wrapper {
     position: absolute;
@@ -68,6 +64,18 @@
       background-color: ui.$grey-light-30;
     }
   }
+}
+
+@media (min-width: ui.$viewport-md) {
+  .carousel {
+    display: block;
+    position: relative;
+    max-width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+  }
+  
 }
 
 .offer {

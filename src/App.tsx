@@ -17,7 +17,6 @@ function App() {
       {!isOfferPage && (
         <main className='main'>
           <Carousel images={images} interval={4000} />
-          {/* <OfferList /> */}
         </main>
       )}
       <Outlet />
