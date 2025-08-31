@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import navItems, { type NavItem } from '../config/nav.config';
+import navItems, { type OfferNavItem } from '../config/nav.config';
 import { findInTree } from '../utils/treeSearch';
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -15,7 +15,7 @@ const Breadcrumbs = () => {
     <nav aria-label="Breadcrumb" className="breadcrumbs">
       <ul className="breadcrumbs__list">
         {pathParts.map((path, index) => {
-          const item = findInTree<NavItem>(
+          const item = findInTree<OfferNavItem>(
             navItems,
             (i) => i.href === path,
             (i) => i.children
