@@ -2,16 +2,16 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { X } from "lucide-react";
 import { useSubmenuContext } from '../hooks/useSubmenuContext';
-import type { NavItem } from '../config/nav.config';
+import type { OfferNavItem } from '../config/nav.config';
 
 
 interface SubmenuProps {
-  item: NavItem;
+  item: OfferNavItem;
   submenuId: string;
   pathname: string;
 }
 
-function renderMenuItems(items: NavItem[], pathname: string, toggleSubmenu: (val: null) => void) {
+function renderMenuItems(items: OfferNavItem[], pathname: string, toggleSubmenu: (val: null) => void) {
   return items.map((child) => (
     <li key={child.href} role="none" className='submenu__item'>
       <Link
