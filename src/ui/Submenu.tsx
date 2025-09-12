@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { X } from "lucide-react";
-import { useSubmenuContext } from '../hooks/useSubmenuContext';
-import type { OfferNavItem } from '../config/nav.config';
-
+import { useSubmenuContext } from "../hooks/useSubmenuContext";
+import type { OfferNavItem } from "../config/nav.config";
+import navItems from "../config/nav.config";
 
 interface SubmenuProps {
   item: OfferNavItem;
@@ -11,37 +11,54 @@ interface SubmenuProps {
   pathname: string;
 }
 
-function renderMenuItems(items: OfferNavItem[], pathname: string, toggleSubmenu: (val: null) => void) {
-  return items.map((child) => (
-    <li key={child.href} role="none" className='submenu__item'>
-      <Link
-        className={`submenu__link ${child.match(pathname) ? 'underline' : ''}`}
-        to={child.href}
-        role="submenuitem"
-        tabIndex={0}
-        onClick={() => toggleSubmenu(null)}
-      >
-        {child.label}
-      </Link>
+function renderMenuItems(
+  items: OfferNavItem[],
+  pathname: string,
+  toggleSubmenu: (val: null) => void
+) {
+  return items.map((child) => {
+    const hasChildren = child.childrenIds && child.childrenIds.length > 0;
 
-      {child.children && child.children.length > 0 && (
-        <ul className="submenu__nested-list" role="submenu">
-          {renderMenuItems(child.children, pathname, toggleSubmenu)}
-        </ul>
-      )}
-    </li>
-  ));
+    return (
+      <li key={child.id} role="none" className="submenu__item">
+        <Link
+          className={`submenu__link ${
+            pathname === child.href ? "underline" : ""
+          }`}
+          to={child.href}
+          role="menuitem"
+          tabIndex={0}
+          onClick={() => toggleSubmenu(null)}
+        >
+          {child.label}
+        </Link>
+
+        {hasChildren && (
+          <ul className="submenu__nested-list" role="menu">
+            {renderMenuItems(
+              child.childrenIds!.map((id) => navItems[id]),
+              pathname,
+              toggleSubmenu
+            )}
+          </ul>
+        )}
+      </li>
+    );
+  });
 }
 
 export default function Submenu({ item, submenuId, pathname }: SubmenuProps) {
   const { toggleSubmenu } = useSubmenuContext();
+
+  const children =
+    item.childrenIds?.map((id) => navItems[id]) ?? [];
 
   return (
     <motion.div
       className="submenu"
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.1, duration: 0.3, ease: 'easeOut' }}
+      transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
       id={submenuId}
       role="menu"
       tabIndex={-1}
@@ -53,8 +70,8 @@ export default function Submenu({ item, submenuId, pathname }: SubmenuProps) {
       >
         <X />
       </button>
-      <ul className='submenu__list' role="menubar">
-        {item.children && renderMenuItems(item.children, pathname, toggleSubmenu)}
+      <ul className="submenu__list" role="menubar">
+        {renderMenuItems(children, pathname, toggleSubmenu)}
       </ul>
     </motion.div>
   );

@@ -1,29 +1,13 @@
-export class Property {
+export interface Property {
   label: string;
   description?: string;
   list?: string[];
-
-  constructor(label: string, description?: string, list?: string[]) {
-    this.label = label;
-    this.description = description;
-    this.list = list;
-  }
 }
 
-export class InfoBlock {
+export interface InfoBlock {
   label: string;
   description?: string;
-  content?: Array<string | Property>;
-
-  constructor(label: string, description?: string, content?: Array<string | Property>) {
-    this.label = label;
-    this.description = description;
-    this.content = content;
-  }
-
-  get hasContent(): boolean {
-    return !!this.content?.length;
-  }
+  content?: Array<string | Property | InfoBlock>;
 }
 
 export interface ProductItem {
@@ -34,66 +18,80 @@ export interface ProductItem {
   basicInformations?: InfoBlock[];
 }
 
+// -----------------------------
+// Utils
+// -----------------------------
 function generateSlug(text: string): string {
-  return text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "");
 }
 
-export class Product implements ProductItem {
-  brand: string;
-  name: string;
-  slug: string;
-  path: string;
-  basicInformations: InfoBlock[];
-
-  constructor(
-    brand: string,
-    name: string,
-    path: string,
-    basicInformations: InfoBlock[] = []
-  ) {
-    this.brand = brand;
-    this.name = name;
-    this.slug = generateSlug(name);
-    this.path = path;
-    this.basicInformations = basicInformations;
-  }
-
-  get fullName(): string {
-    return `${this.brand} - ${this.name}`;
-  }
-
-  get url(): string {
-    return `/products/${this.slug}`;
-  }
+// -----------------------------
+// Factories
+// -----------------------------
+export function createProperty(
+  label: string,
+  description?: string,
+  list?: string[]
+): Property {
+  return { label, description, list };
 }
 
-export const airConditionProducts: Product[] = [
-  new Product(
+export function createInfoBlock(
+  label: string,
+  description?: string,
+  content?: Array<string | Property | InfoBlock>
+): InfoBlock {
+  return { label, description, content };
+}
+
+export function createProduct(
+  brand: string,
+  name: string,
+  path: string,
+  basicInformations: InfoBlock[] = []
+): ProductItem {
+  return {
+    brand,
+    name,
+    slug: generateSlug(name),
+    path,
+    basicInformations,
+  };
+}
+
+// -----------------------------
+// Data
+// -----------------------------
+export const airConditionProducts: ProductItem[] = [
+  createProduct(
     "Mitsubishi Electric",
     "Economy MSZ-HR",
     "https://storage.googleapis.com/images-instal/klima-electric.jpg",
     [
-      new InfoBlock(
+      createInfoBlock(
         "Podstawowe informacje",
-        "Urządzenie ścienne MSZ-AY charakteryzuje się wysoką jakością matowej białej powierzchni. Dzięki zaokrąglonym krawędziom i kompaktowej obudowie dyskretnie wpasowuje się w każde pomieszczenie. Przy niskim poziomie ciśnienia akustycznego (18 dB(A)) jest wyjątkowo ciche. W trybie nocnym dźwięki robocze są stłumione, oświetlenie przyciemnione, a jednostka zewnętrzna pracuje o 3 dB(A) ciszej. Urządzenie jest standardowo wyposażone w filtr V-blocking.",
+        "Urządzenie ścienne MSZ-AY charakteryzuje się wysoką jakością matowej białej powierzchni...",
         [
-          new InfoBlock("Zalety", undefined, [
+          createInfoBlock("Zalety", undefined, [
             "SCOP do 4,8 / SEER do 8,7",
             "Klasa efektywności energetycznej do A++ / A+++",
             "Poziom hałasu (urządzenie wewnętrzne) od 19 dB(A)",
             "Wbudowany filtr V-Blocking w standardzie",
             "Wymiary (szer. / głęb. / wys.) 760 / 199 / 250 mm",
           ]),
-          new InfoBlock("Właściwości", undefined, [
-            new Property("Elastyczność montażu", undefined, [
+          createInfoBlock("Właściwości", undefined, [
+            createProperty("Elastyczność montażu", undefined, [
               "Dostępna wersja o wydajności chłodniczej 1,5 kW",
               "Prosty montaż nad otworem drzwiowym",
             ]),
-            new Property(
+            createProperty(
               "Filtr z jonami srebra",
               "Powłoka z zawartością jonów srebra pozwala na uzyskanie wysokiej czystości powietrza..."
             ),
-            new Property(
+            createProperty(
               "I-Save",
               "Funkcja umożliwiająca zapamiętywanie preferowanych ustawień trybu pracy..."
             ),
@@ -102,14 +100,72 @@ export const airConditionProducts: Product[] = [
       ),
     ]
   ),
-  new Product(
+  createProduct(
     "Mitsubishi Electric",
     "Diamond MSZ-LN",
     "https://storage.googleapis.com/images-instal/klima-diamond.jpg"
   ),
-  new Product(
+  createProduct(
     "Mitsubishi Electric",
     "Premium MSZ-EF",
     "https://storage.googleapis.com/images-instal/klima-premium.png"
   ),
 ];
+
+// export const airConditionProducts = {
+//   0: {
+//     id: 0,
+//     name: "Air Conditioners",
+//     childIds: [1, 2, 3],
+//   },
+//   1: {
+//     id: 1,
+//     name: "Mitsubishi Electric Economy MSZ-HR",
+//     path: "https://storage.googleapis.com/images-instal/klima-electric.jpg",
+//     basicInformations: [
+//       {
+//         label: "Podstawowe informacje",
+//         description:
+//           "Urządzenie ścienne MSZ-AY charakteryzuje się wysoką jakością matowej białej powierzchni...",
+//         content: [
+//           {
+//             label: "Zalety",
+//             content: [
+//               "SCOP do 4,8 / SEER do 8,7",
+//               "Klasa efektywności energetycznej do A++ / A+++",
+//               "Poziom hałasu (urządzenie wewnętrzne) od 19 dB(A)",
+//             ],
+//           },
+//           {
+//             label: "Właściwości",
+//             content: [
+//               {
+//                 label: "Elastyczność montażu",
+//                 list: ["Dostępna wersja o wydajności chłodniczej 1,5 kW", "Prosty montaż nad otworem drzwiowym"],
+//               },
+//               { label: "Filtr z jonami srebra", description: "Powłoka z jonami srebra zapewnia wysoką czystość powietrza" },
+//               { label: "I-Save", description: "Funkcja umożliwia zapamiętywanie preferowanych ustawień trybu pracy" },
+//             ],
+//           },
+//         ],
+//       },
+//     ],
+//     childIds: [],
+//   },
+//   2: {
+//     id: 2,
+//     name: "Mitsubishi Electric Diamond MSZ-LN",
+//     path: "https://storage.googleapis.com/images-instal/klima-diamond.jpg",
+//     basicInformations: [],
+//     childIds: [],
+//   },
+//   3: {
+//     id: 3,
+//     name: "Mitsubishi Electric Premium MSZ-EF",
+//     path: "https://storage.googleapis.com/images-instal/klima-premium.png",
+//     basicInformations: [],
+//     childIds: [],
+//   },
+// };
+
+export default airConditionProducts;

@@ -10,7 +10,7 @@ export const SubmenuContainer = () => {
   if (openIndex === null) return null;
 
   const item = navItems[openIndex];
-  if (!item || !item.children) return null;
+  if (!item || !item.childrenIds?.length) return null;
 
   const submenuId = `submenu-${openIndex}`;
 
