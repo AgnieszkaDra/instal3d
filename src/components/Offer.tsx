@@ -5,9 +5,9 @@ import OfferList from "../ui/OfferList";
 import { OfferPageModel } from "../models/OfferPageModel";
 
 const Offer = () => {
-  const { category, section } = useParams();
+  const { category, section } = useParams<{ category?: string; section?: string }>();
   const offer = new OfferPageModel(navItems, category, section);
- 
+
   return (
     <section className="offer container">
       <Breadcrumbs />

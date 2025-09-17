@@ -8,7 +8,7 @@ interface OfferListProps {
 const OfferList = ({ items }: OfferListProps) => {
   const { category, section } = useParams();
   if (!items || items.length === 0) {
-    return <p>Brak produktów do wyświetlenia.</p>;
+    return <p></p>;
   }
 
   return (

@@ -11,14 +11,16 @@ const Breadcrumbs = () => {
     (_, index) => '/' + segments.slice(0, index + 1).join('/')
   );
 
+  const itemsArray = Object.values(navItems);
+
   return (
     <nav aria-label="Breadcrumb" className="breadcrumbs">
       <ul className="breadcrumbs__list">
         {pathParts.map((path, index) => {
           const item = findInTree<OfferNavItem>(
-            navItems,
+            itemsArray,
             (i) => i.href === path,
-            (i) => i.children
+            (i) => i.childrenIds?.map((id) => navItems[id])
           );
           const label = item?.label || capitalize(segments[index]);
           const isLast = index === pathParts.length - 1;
