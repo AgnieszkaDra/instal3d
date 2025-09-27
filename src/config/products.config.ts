@@ -64,31 +64,29 @@ export const airConditionProducts: ProductItem[] = [
     [
       createInfoBlock(
         "Podstawowe informacje",
-        "Urządzenie ścienne MSZ-AY charakteryzuje się wysoką jakością matowej białej powierzchni...",
-        [
-          createInfoBlock("Zalety", undefined, [
-            "SCOP do 4,8 / SEER do 8,7",
-            "Klasa efektywności energetycznej do A++ / A+++",
-            "Poziom hałasu (urządzenie wewnętrzne) od 19 dB(A)",
-            "Wbudowany filtr V-Blocking w standardzie",
-            "Wymiary (szer. / głęb. / wys.) 760 / 199 / 250 mm",
-          ]),
-          createInfoBlock("Właściwości", undefined, [
-            createProperty("Elastyczność montażu", undefined, [
-              "Dostępna wersja o wydajności chłodniczej 1,5 kW",
-              "Prosty montaż nad otworem drzwiowym",
-            ]),
-            createProperty(
-              "Filtr z jonami srebra",
-              "Powłoka z zawartością jonów srebra pozwala na uzyskanie wysokiej czystości powietrza..."
-            ),
-            createProperty(
-              "I-Save",
-              "Funkcja umożliwiająca zapamiętywanie preferowanych ustawień trybu pracy..."
-            ),
-          ]),
-        ]
+        "Urządzenie ścienne MSZ-AY charakteryzuje się wysoką jakością matowej białej powierzchni..."
       ),
+      createInfoBlock("Zalety", undefined, [
+        "SCOP do 4,8 / SEER do 8,7",
+        "Klasa efektywności energetycznej do A++ / A+++",
+        "Poziom hałasu (urządzenie wewnętrzne) od 19 dB(A)",
+        "Wbudowany filtr V-Blocking w standardzie",
+        "Wymiary (szer. / głęb. / wys.) 760 / 199 / 250 mm",
+      ]),
+      createInfoBlock("Właściwości", undefined, [
+        createProperty("Elastyczność montażu", undefined, [
+          "Dostępna wersja o wydajności chłodniczej 1,5 kW",
+          "Prosty montaż nad otworem drzwiowym",
+        ]),
+        createProperty(
+          "Filtr z jonami srebra",
+          "Powłoka z zawartością jonów srebra pozwala na uzyskanie wysokiej czystości powietrza..."
+        ),
+        createProperty(
+          "I-Save",
+          "Funkcja umożliwiająca zapamiętywanie preferowanych ustawień trybu pracy..."
+        ),
+      ]),
     ]
   ),
   createProduct(

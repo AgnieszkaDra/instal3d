@@ -14,38 +14,36 @@ export function ProductTabs({ matchedProduct }: ProductTabsProps) {
 
   return (
     <section>
-      <ul className="info__list">
-        {tabs.map((tab) => (
-          <li
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`info__item h5-lead ${
-              activeTab === tab ? "is-active" : ""
-            }`}
-          >
-            {tab}
-            {activeTab === tab && (
-              <motion.div
-                layoutId="underline"
-                className="underline"
-                initial={false}
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              />
-            )}
-          </li>
-        ))}
-      </ul>
+      <ul className="product-tabs__list">
+  {tabs.map((tab) => (
+    <li
+      key={tab}
+      onClick={() => setActiveTab(tab)}
+      className={`product-tabs__item h5-lead`}
+    >
+      {tab}
+      {activeTab === tab && (
+        <motion.div
+          layoutId="underline"
+          className="product-tabs__item--current"
+          initial={false}
+          transition={{ type: "spring", stiffness: 400, damping: 80 }}
+        />
+      )}
+    </li>
+  ))}
+</ul>
 
-      <section className="product__basic-info">
-        {activeTab === "Informacje ogólne" &&
-          (matchedProduct.basicInformations.length ? (
-            matchedProduct.basicInformations.map((block, i) => (
-              <div key={i}>{renderInfoBlock(block, i)}</div>
-            ))
-          ) : (
-            <p>Brak informacji o produkcie</p>
-          ))}
-      </section>
+<section className="product-tabs__content">
+  {activeTab === "Informacje ogólne" &&
+    (matchedProduct.basicInformations.length ? (
+      matchedProduct.basicInformations.map((block, i) => (
+        <div key={i} className="product-tabs__block"> {renderInfoBlock(block, i)}</div>
+      ))
+    ) : (
+      <p>Brak informacji o produkcie</p>
+    ))}
+</section>
     </section>
   );
 }

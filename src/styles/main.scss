@@ -1,5 +1,6 @@
 @use "sass:map";
 @use './abstracts/index' as ui;
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 
 .breadcrumbs {
@@ -7,23 +8,22 @@
   padding-top: ui.$spacing-600;
   &__list { 
     display: flex;
+
   }
 
   &__item {
     display: flex;
     align-items: center;
-    color: ui.$text-dark;
+  }
 
+  &__link {
+    color: ui.$text-dark;
+    text-decoration: none;
+    font-size: map.get(ui.$font-size, small);
     &--current {
       font-weight: map-get(ui.$font-weight, large);
       color: ui.$text-light;
     }
-  }
-
-  &__link {
-    color: inherit;
-    text-decoration: none;
-    font-size: map.get(ui.$font-size, small);
     
     @include ui.respond(md, lg, xl) {
       font-size: map-get(ui.$font-size, normal);
@@ -146,5 +146,139 @@
       text-align: start;
       list-style: circle;
     }
+
+  }
+  &__categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.product {
+  &__title {
+    text-align: start;
+    margin-top: ui.$spacing-600;
+    border-left: 2px solid ui.$turcoise-decoration;
+    padding: 10px 0 10px 40px;
+    @include ui.respond(md) {
+      padding: 10px 0 10px 60px;
+    }
+  }
+  &-tabs {
+    &__list {
+      background-color: ui.$grey-light-60;
+      display: block;
+      margin: auto;
+      @include ui.respond(md) {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: transparent;
+      }
+    }
+    &__item {
+      text-transform: uppercase;
+      font-size: map.get(ui.$font-size, small);
+      font-weight: map.get(ui.$font-weight, small);
+      color: ui.$text-dark;
+      padding: 0 20px 5px 20px;
+      @include ui.respond(md) {
+        font-weight: map.get(ui.$font-weight, medium);
+      }
+      &--current {
+        border-bottom: 2px solid ui.$turcoise-decoration;
+        font-weight: map.get(ui.$font-weight, medium);
+        
+      }
+    }
+    &__content {
+      
+    }
+    &__block {
+      display: flex;
+      justify-content: flex-start;
+      &:nth-child(1) {
+        margin-top: ui.$spacing-400;
+      }
+    }
+  }
+}
+
+.info-block {
+  & > * {
+    margin: 20px 0 20px 0px;
+  }
+  &__title {
+    text-align: start;
+    margin-top: ui.$spacing-400;
+    border-left: 2px solid ui.$turcoise-decoration;
+    padding: 5px 0 5px 30px;
+    @include ui.respond(md) {
+      padding: 5px 0 5px 30px;
+    }
+  }
+  &__list {
+    padding-left: 15px;
+    list-style: none;
+    &-item {
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 0.5rem;
+      padding-left: 2.5rem;
+      &::before {
+        content: "check";                 
+        font-family: "Material Icons"; 
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 1rem;
+        line-height: 1;
+      }
+    }
+  }
+  &__content {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+
+.property {
+  margin-right: auto;
+  flex: 0 0 33.33%;
+  padding: 0 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  &__label {
+    color: ui.$turcoise-decoration;
+    position: relative;
+    margin-bottom: 0.5rem;
+    padding-left: 2.5rem;
+    &::before {
+        content: "check";                 
+        font-family: "Material Icons"; 
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 1rem;
+        line-height: 1;
+      }
+  }
+  &__list, &__desc {
+    text-align: start;
+  }
+  &__list {
+    &-item {
+      list-style: disc;
+      margin-bottom: 0.5rem;
+      &::marker {
+        color: ui.$turcoise-decoration;
+      }
+    }
+  }
+}
+
+

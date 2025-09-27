@@ -36,9 +36,11 @@ $font-family: (
 
 $typography: (
   h1-header: (min: 2.75rem, vw: 5vw, max: 4.5rem),
-  h2-header: (min: 2.25rem,  vw: 4vw,   max: 3.625rem),
-  h3-title: (min: 1.75rem,  vw: 3.5vw, max: 2.625rem),
-  h5-lead: (min: 1.125rem, vw: 2vw,   max: 1.375rem),
+  h1-subpage: (min: 2rem, vw: 3vw, max: 2.125rem),
+  h2-header: (min: 2.25rem, vw: 4vw, max: 3.625rem),
+  h3-title: (min: 1.75rem, vw: 3.5vw, max: 2.625rem),
+  h4-title: (min: 1.375rem, vw: 2.25vw, max: 1.75rem),
+  h5-lead: (min: 1.125rem, vw: 2vw, max: 1.375rem),
   paragraph: (min: 1rem, vw: 1.5vw, max: 1.125rem), 
 );
 
@@ -47,6 +49,14 @@ $typography: (
   font-weight: map-get(sizes.$font-weight, large);
   line-height: 80px;
   letter-spacing: -1.5px;
+}
+
+.h1-subpage {
+  @include fluid-type-preset(h1-subpage);
+  font-weight: map-get(sizes.$font-weight, medium);
+  line-height: 76px;
+  letter-spacing: 2px;
+  margin: 40px 0;
 }
 
 .h2-header {
@@ -63,11 +73,17 @@ $typography: (
   letter-spacing: -0.5px; 
 }
 
+.h4-title {
+  @include fluid-type-preset(h4-title);
+  font-weight: map-get(sizes.$font-weight, medium);
+  line-height: 42px;
+  letter-spacing: -0.35px;
+}
+
 .h5-lead {
   @include fluid-type-preset(h5-lead);
-  font-weight: map-get(sizes.$font-weight, medium);
-  line-height: 35px;
-  letter-spacing: -0.25px;
+  font-weight: map-get(sizes.$font-weight, small);
+  line-height: 48px;
 }
 
 .paragraph {

@@ -13,7 +13,12 @@ export class OfferPageModel {
     section?: string
   ): OfferNavItem | null {
     const slug = section ?? category;
-    if (!slug) return null;
+
+    if (!slug) {
+      const rootItem = items[0];
+      if (!rootItem) return null;
+      return rootItem; 
+    }
 
     for (const key in items) {
       const item = items[key];
@@ -35,7 +40,7 @@ export class OfferPageModel {
   }
 
   get title(): string | null {
-    return this.item?.label ?? null;
+    return this.item?.title ?? null;
   }
 
   get sublabel(): string | null {
@@ -52,5 +57,9 @@ export class OfferPageModel {
 
   get products(): OfferNavItem["products"] {
     return this.item?.products ?? [];
+  }
+
+  get childrenIds(): number[] | undefined {
+    return this.item?.childrenIds;
   }
 }

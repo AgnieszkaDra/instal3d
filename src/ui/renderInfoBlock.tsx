@@ -6,7 +6,8 @@ function isProperty(item: unknown): item is Property {
     typeof item === "object" &&
     item !== null &&
     "label" in item &&
-    ("list" in item || "description" in item)
+    (("list" in item && Array.isArray((item as Property).list)) ||
+      "description" in item)
   );
 }
 
@@ -15,40 +16,42 @@ function isInfoBlock(item: unknown): item is InfoBlock {
     typeof item === "object" &&
     item !== null &&
     "label" in item &&
-    "content" in item
+    Array.isArray((item as InfoBlock).content)
   );
 }
 
 export function renderInfoBlock(block: InfoBlock, index: number): JSX.Element {
   return (
     <div key={index} className="info-block">
-      <h4 className="info-block__title">{block.label}</h4>
+      <h4 className="info-block__title h5-title">{block.label}</h4>
       {block.description && (
-        <p className="info-block__desc">{block.description}</p>
+        <p className="info-block__desc paragraph">{block.description}</p>
       )}
 
       {block.content && (
         <div className="info-block__content">
-          {block.content.map((item, i) => {
-            if (typeof item === "string") {
-              return (
-                <ul key={i} className="info-block__list">
-                  <li>{item}</li>
-                </ul>
-              );
-            }
+          {block.content.some((item) => typeof item === "string") && (
+            <ul className="info-block__list">
+              {block.content
+                .filter((item): item is string => typeof item === "string")
+                .map((str, i) => (
+                  <li key={i} className="info-block__list-item">{str}</li>
+                ))}
+            </ul>
+          )}
 
+          {block.content.map((item, i) => {
             if (isProperty(item)) {
               return (
-                <div key={i} className="property">
-                  <h5 className="property__label">{item.label}</h5>
+                <div key={`prop-${i}`} className="property">
+                  <b className="property__label">{item.label}</b>
                   {item.description && (
-                    <p className="property__desc">{item.description}</p>
+                    <p className="property__desc paragraph">{item.description}</p>
                   )}
                   {item.list && (
                     <ul className="property__list">
                       {item.list.map((el, j) => (
-                        <li key={j}>{el}</li>
+                        <li key={j} className="property__list-item">{el}</li>
                       ))}
                     </ul>
                   )}

@@ -5,7 +5,6 @@ export class ProductPageModel {
   private item: ProductItem | null;
 
   constructor(items: Record<number, OfferNavItem>, slug: string) {
-    // convert root record to an array once
     this.item = ProductPageModel.findBySlug(Object.values(items), items, slug);
   }
 
