@@ -83,7 +83,7 @@ $typography: (
 .h5-lead {
   @include fluid-type-preset(h5-lead);
   font-weight: map-get(sizes.$font-weight, small);
-  line-height: 48px;
+  //line-height: 48px;
 }
 
 .paragraph {

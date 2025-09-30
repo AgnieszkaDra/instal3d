@@ -14,7 +14,7 @@ const Breadcrumbs = () => {
   const itemsArray = Object.values(navItems);
 
   return (
-    <nav aria-label="Breadcrumb" className="breadcrumbs">
+    <nav aria-label="Breadcrumb" className="breadcrumbs container">
       <ul className="breadcrumbs__list">
         {pathParts.map((path, index) => {
           const item = findInTree<OfferNavItem>(

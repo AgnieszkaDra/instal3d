@@ -56,25 +56,59 @@ button {
  cursor: pointer;
 }
 
+// $container-padding: clamp(1rem, 9vw, 4rem);
+
+// .container {
+//   margin-inline: auto;
+//   width: 100%;
+
+//   padding-inline: $container-padding;
+//   padding-top: clamp(0.5rem, 4vw, 2rem);
+//   padding-bottom: clamp(0.5rem, 4vw, 2rem);
+
+//   @include ui.respond(md) {
+//     padding-inline: clamp(2rem, 8vw, 3rem);
+//     padding-top: clamp(1rem, 3vw, 1.5rem);
+//     padding-bottom: clamp(1rem, 3vw, 1.5rem);
+//   }
+
+//   @include ui.respond(lg) {
+//     padding-inline: clamp(3rem, 7vw, 4rem);
+//     padding-top: clamp(1rem, 2vw, 1.5rem);
+//     padding-bottom: clamp(1rem, 2vw, 1.5rem);
+//   }
+
+//   @include ui.responsive-max-width((
+//     md: (40rem, 60vw, ui.$viewport-md), 
+//     lg: (48rem, 70vw, ui.$viewport-lg),
+//     xl: (64rem, 80vw, ui.$viewport-xl)
+//   ));
+// }
+
 $container-padding: clamp(1rem, 9vw, 4rem);
 
 .container {
   margin-inline: auto;
   width: 100%;
-
   padding-inline: $container-padding;
+  padding-top: clamp(0.5rem, 4vw, 2rem);
+  padding-bottom: clamp(0.5rem, 4vw, 2rem);
 
   @include ui.respond(md) {
     padding-inline: clamp(2rem, 8vw, 3rem);
+    padding-top: clamp(1rem, 3vw, 1.5rem);
+    padding-bottom: clamp(1rem, 3vw, 1.5rem);
   }
 
   @include ui.respond(lg) {
     padding-inline: clamp(3rem, 7vw, 4rem);
+    padding-top: clamp(1rem, 2vw, 1.5rem);
+    padding-bottom: clamp(1rem, 2vw, 1.5rem);
   }
 
   @include ui.responsive-max-width((
-    md: (40rem, 60vw, ui.$viewport-md), 
-    lg: (48rem, 70vw, ui.$viewport-lg),
-    xl: (64rem, 80vw, ui.$viewport-xl)
+    md: (50rem, 70vw, ui.$viewport-md),  
+    lg: (64rem, 80vw, ui.$viewport-lg), 
+    xl: (80rem, 90vw, ui.$viewport-xl)  
   ));
 }

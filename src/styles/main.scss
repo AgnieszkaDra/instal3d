@@ -5,7 +5,6 @@
 
 .breadcrumbs {
   display: flex;
-  padding-top: ui.$spacing-600;
   &__list { 
     display: flex;
 
@@ -88,9 +87,6 @@
     margin-top: ui.$spacing-600;
     border-left: 2px solid ui.$turcoise-decoration;
     padding: 10px 0 10px 60px;
-  }
-  &__subtitle {
-    margin-top: ui.$spacing-600;
   }
   &__description {
     margin-top: ui.$spacing-600;
@@ -191,9 +187,6 @@
         
       }
     }
-    &__content {
-      
-    }
     &__block {
       display: flex;
       justify-content: flex-start;
@@ -279,6 +272,151 @@
       }
     }
   }
+}
+
+.calculator {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f9fafb;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #1a3c34;
+  }
+
+  &__field {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  &__input,
+  &__select {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #1a3c34;
+      outline: none;
+    }
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background: #1a3c34;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    
+    &:hover {
+      background: #25664f;
+    }
+  }
+}
+
+.results {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+
+  p {
+    margin-bottom: 0.8rem;
+  }
+
+  &__highlight {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #25664f;
+    margin-top: 1rem;
+  }
+
+  &__note {
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+}
+
+.solar-calculator {
+  padding: ui.$container-padding;
+  &__icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: auto;
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    gap: 2rem; 
+  &-block {
+    padding: ui.$spacing-200;
+    @include ui.respond(lg) {
+      padding-block: auto;
+      padding-top: auto;
+      padding-bottom: auto;
+    }
+      border: 1px solid ui.$text-light;
+    }
+  &-button {
+    display: flex;
+    border: none;
+  }
+  }
+  &__subtitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: ui.$spacing-400;
+    color: ui.$turcoise-decoration;
+  }
+  &__title {
+    font-weight: initial;
+    text-align: start;
+    margin-bottom: ui.$spacing-400;
+  }
+  &__list {
+    &-item {
+      list-style: disc;
+      list-style-position: inside;
+      margin-bottom: 0.5rem;
+      text-align: start;
+    &::marker {
+      color: ui.$turcoise-decoration;
+    }
+    }
+  }
+  &__text {
+    text-align: start;
+  }
+}
+
+.calculate-link {
+  border-radius: 5px; 
+  padding: 13px 20px;
+  background-color: ui.$turcoise-decoration;
+  color: ui.$white;
 }
 
 

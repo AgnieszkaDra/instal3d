@@ -13,19 +13,19 @@ const ProductPage = () => {
   if (!page.name) return <p>Product not found</p>;
 
   return (
-    <section className="product container">
+    <>
       <Breadcrumbs />
-      
-      <h1 className="product__title h1-subpage">{page.name}</h1>
-
-      {page.path && (
-        <div className="product__image-container">
-          <img src={page.path} alt={page.name} className="product__image" />
-        </div>
-      )}
-
-      <ProductTabs matchedProduct={page} />
-    </section>
+      <section className="product container">
+        <h1 className="product__title h1-subpage">{page.name}</h1>
+          {page.path && (
+            <div className="product__image-container">
+              <img src={page.path} alt={page.name} className="product__image" />
+            </div>
+          )}
+        <ProductTabs matchedProduct={page} />
+      </section>
+    </>
+    
   );
 };
 

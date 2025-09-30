@@ -34,7 +34,7 @@ export const navItems: Record<number, OfferNavItem> = {
   5: { id: 5, label: "Hydraulika", title: "Hydraulika", href: "/oferta/hydraulika/", slug: "hydraulika", childrenIds: [15] },
   6: { id: 6, label: "Posadzki anhydrytowe", title: "Posadzki anhydrytowe", href: "/oferta/posadzki-anhydrytowe/", slug: "posadzki-anhydrytowe", childrenIds: [16] },
   7: { id: 7, label: "Woda lodowa", title: "Woda lodowa", href: "/oferta/woda-lodowa/", slug: "woda-lodowa" },
-  8: { id: 8, label: "Kalkulator oszczędności", href: "/oferta/fotowoltaika/kalkulator", slug: "kalkulator" },
+  8: { id: 8, label: "Kalkulator oszczędności", href: "/oferta/fotowoltaika/kalkulatorsloneczny", slug: "kalkulatorsloneczny" },
   9: { id: 9, label: "Realizacje", href: "/oferta/fotowoltaika/realizacje", slug: "realizacje" },
   10: { id: 10, label: "Kalkulator oszczędności", href: "/oferta/pompy-ciepla/kalkulator", slug: "kalkulator" },
   11: { id: 11, label: "Realizacje", href: "/oferta/pompy-ciepla/realizacje", slug: "realizacje" },
