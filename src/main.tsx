@@ -8,9 +8,11 @@ import App from './App.tsx'
 import Offer from './components/Offer.tsx';
 import ProductPage from './ui/ProductPage.tsx';
 import SolarCalculator from './ui/SolarCalculator.tsx';
+import { NavbarProvider } from './hooks/useNavbar.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <NavbarProvider>
     <Router>
       <Routes>
         <Route path="/" element={<App />}>
@@ -23,5 +25,6 @@ createRoot(document.getElementById('root')!).render(
         </Route>
       </Routes>
     </Router>
+    </NavbarProvider>
  </StrictMode>,
 )

@@ -50,8 +50,7 @@ function renderMenuItems(
 export default function Submenu({ item, submenuId, pathname }: SubmenuProps) {
   const { toggleSubmenu } = useSubmenuContext();
 
-  const children =
-    item.childrenIds?.map((id) => navItems[id]) ?? [];
+  const children = item.childrenIds?.map((id) => navItems[id]) ?? [];
 
   return (
     <motion.div

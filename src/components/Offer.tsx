@@ -1,12 +1,11 @@
-import { useParams } from "react-router-dom";
 import navItems from "../config/nav.config";
 import { Breadcrumbs } from "../ui";
 import OfferList from "../ui/OfferList";
 import { OfferPageModel } from "../models/OfferPageModel";
+import { useParams } from "react-router-dom";
 
 const Offer = () => {
   const { category, section } = useParams<{ category?: string; section?: string }>();
-
   const offer = new OfferPageModel(navItems, category, section);
 
   return (

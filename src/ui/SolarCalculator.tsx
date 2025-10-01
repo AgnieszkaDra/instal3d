@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SolarCalculatorModel } from "../models/SolarCalculatorModel";
 import { type RoofType, type Direction } from "../config/solar.config";
 import { MdLiveHelp } from "react-icons/md";
 import Breadcrumbs from "./Breadcrumbs";
+import { useLocation } from "react-router-dom";
+import { useSubmenuContext } from "../hooks/useSubmenuContext";
 
 const SolarCalculator = () => {
+
   const [monthlyCost, setMonthlyCost] = useState(400);
   const [roofType, setRoofType] = useState<RoofType>("slanted");
   const [direction, setDirection] = useState<Direction>("south");
@@ -14,6 +17,8 @@ const SolarCalculator = () => {
     const calc = new SolarCalculatorModel(monthlyCost, roofType, direction);
     setResult(calc.calculate());
   };
+
+
 
   return (
     <>
@@ -143,3 +148,5 @@ const SolarCalculator = () => {
 };
 
 export default SolarCalculator;
+
+
